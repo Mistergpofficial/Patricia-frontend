@@ -86,7 +86,7 @@
                     <div class="card">
                         <div class="card-body text-info border-bottom border-info border-w-5">
                             <h2 class="text-center">USERNAME</h2>
-                            <h6 class="text-center">{{ authUser }}</h6>
+                            <h6 class="text-center">{{ authUser.replace(/^"|"$/g, '')  }}</h6>
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     <div class="card">
                         <div class="card-body text-success border-bottom border-success border-w-5">
                             <h2 class="text-center">USERNAME</h2>
-                            <h6 class="text-center">{{ authUser }}</h6>
+                            <h6 class="text-center">{{ authUser.replace(/^"|"$/g, '')  }}</h6>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                     <div class="card">
                         <div class="card-body text-danger border-bottom border-danger border-w-5">
                             <h2 class="text-center">USERNAME</h2>
-                            <h6 class="text-center">{{ authUser }}</h6>
+                            <h6 class="text-center">{{ authUser.replace(/^"|"$/g, '')  }}</h6>
                         </div>
                     </div>
                 </div>
