@@ -29,6 +29,15 @@
                     <i class="fa fa-lock"></i>
                 </div>
                 <div class="input__wrapper">
+                    <h5 class="input__title">Phone Number</h5>
+                    <input type="number" class="input" name="phone" v-model="form.phone" />
+                </div>
+            </div>
+            <div class="input__container two">
+                <div class="input__icon">
+                    <i class="fa fa-lock"></i>
+                </div>
+                <div class="input__wrapper">
                     <h5 class="input__title">Password</h5>
                     <input type="password" class="input" name="password" v-model="form.password" />
                 </div>
@@ -61,12 +70,14 @@ import {
     sameAs,
     email
 } from "vuelidate/lib/validators";
+
 export default {
     data() {
         return {
             form: {
                 username: "",
                 email: "",
+                phone: '',
                 password: "",
                 password_confirmation: ""
             },
@@ -83,6 +94,10 @@ export default {
                 required,
                 email
             },
+            phone: {
+                required
+
+            },
             password: {
                 required
             },
@@ -96,8 +111,8 @@ export default {
 
     methods: {
         async register() {
-            // this.errors = this.$v.form.$invalid;
-            this.errors = this.$v.form.$touch();
+            this.errors = this.$v.form.$invalid;
+            //this.errors = this.$v.form.$touch();
 
             if (this.errors === false) {
                 try {
@@ -106,6 +121,7 @@ export default {
                         ...this.form,
                         username: this.form.username,
                         email: this.form.email,
+                        phone: this.form.phone,
                         password: this.form.password
                     };
                     const response = await this.$store.dispatch(
@@ -117,40 +133,14 @@ export default {
 
                     }
                 } catch (error) {
-                    console.log(error)
+
+                    //console.log(error)
+                    console.log(this.errors);
                 }
 
                 this.savingUser = false;
             }
 
-            // this.$validator.validateAll().then(result => {
-            //     if (result) {
-            //         const payload = {
-            //             ...this.form,
-            //             username: this.form.username,
-            //             email: this.form.email,
-            //             password: this.form.pREGISTERassword
-            //         }
-            //         this.$store.dispatch('', payload);
-            //     }
-            // });
-
-            // const payload = {
-            //     ...this.form,
-            //     username: this.form.username,
-            //     email: this.form.email,
-            //     password: this.form.password
-            // }
-            // this.$store.dispatch('REGISTER', payload)
-            //     .then(response => {
-            //         success("User Registered!Check Your Email For Activation Code");
-            //         this.form = ""
-            //         this.$router.push('/');
-            //     })
-            //     .catch(err => {
-            //         console.log(err)
-            //         // this.errors = err.response.data
-            //     });
         }
 
     }

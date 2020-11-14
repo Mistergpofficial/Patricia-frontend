@@ -16,20 +16,8 @@
                     </a>
                 </div>
                 <div class="navbar-header h4 mb-0 text-center h-100 collapse-menu-bar">
-                    <a href="#" class="sidebarCollapse" id="collapse"><i class="icon-menu"></i></a>
+                    <a href="#" class="sidebarCollapse" id="collapse"><i class="fa fa-bars"></i></a>
                 </div>
-
-                <form class="float-left d-none d-lg-block search-form">
-                    <div class="form-group mb-0 position-relative">
-                        <input type="text" class="form-control border-0 rounded bg-search pl-5" placeholder="Search anything...">
-                        <div class="btn-search position-absolute top-0">
-                            <a href="#"><i class="h6 icon-magnifier"></i></a>
-                        </div>
-                        <a href="#" class="position-absolute close-button mobilesearch d-lg-none" data-toggle="dropdown" aria-expanded="false"><i class="icon-close h5"></i>
-                        </a>
-
-                    </div>
-                </form>
                 <div class="navbar-right ml-auto h-100">
 
                 </div>
@@ -44,10 +32,10 @@
 
             <!-- START: Menu-->
             <ul id="side-menu" class="sidebar-menu">
-                <li class="dropdown"><a href="#"><i class="icon-home mr-1"></i> Dashboard</a></li>
+                <li class="dropdown"><a href="#"><i class="fa fa-btc"></i> Dashboard</a></li>
             </ul>
             <!-- END: Menu-->
-            <li class=""><a @click="logout" v-if="isLoggedIn"><i class="icon-home mr-1"></i> Logout</a></li>
+            <li class="dropdown"><a @click="logout" v-if="isLoggedIn"><i class="fa fa-sign-out"></i> Logout</a></li>
 
         </div>
     </div>
@@ -65,7 +53,7 @@
                             <div class="sub-header align-self-center d-sm-flex w-100 rounded">
                                 <div class="w-sm-100">
                                     <h4 class="mb-0">Dashboard</h4>
-                                    <p>Welcome {{ authUser.replace(/^"|"$/g, '')  }} </p>
+                                    <p>Welcome {{ authUser.username }} </p>
                                     <a href="#" class="btn btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
                                 </div>
 
@@ -81,28 +69,29 @@
             <!-- END: Breadcrumbs-->
 
             <!-- START: Card Data-->
+
             <div class="row">
                 <div class="col-12 col-sm-6 col-xl-4 mt-3">
                     <div class="card">
                         <div class="card-body text-info border-bottom border-info border-w-5">
                             <h2 class="text-center">USERNAME</h2>
-                            <h6 class="text-center">{{ authUser.replace(/^"|"$/g, '')  }}</h6>
+                            <h6 class="text-center">{{ authUser.username  }}</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-xl-4 mt-3">
                     <div class="card">
                         <div class="card-body text-success border-bottom border-success border-w-5">
-                            <h2 class="text-center">USERNAME</h2>
-                            <h6 class="text-center">{{ authUser.replace(/^"|"$/g, '')  }}</h6>
+                            <h2 class="text-center">EMAIL</h2>
+                            <h6 class="text-center">{{ authUser.email  }}</h6>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-xl-4 mt-3">
                     <div class="card">
                         <div class="card-body text-danger border-bottom border-danger border-w-5">
-                            <h2 class="text-center">USERNAME</h2>
-                            <h6 class="text-center">{{ authUser.replace(/^"|"$/g, '')  }}</h6>
+                            <h2 class="text-center">PHONE</h2>
+                            <h6 class="text-center">+234{{ authUser.phone  }}</h6>
                         </div>
                     </div>
                 </div>
@@ -128,7 +117,7 @@ export default {
             return this.$store.getters.isLoggedIn
         },
         authUser: function () {
-            return localStorage.getItem('user')
+            return JSON.parse(localStorage.getItem('user'))
         }
     },
     methods: {
